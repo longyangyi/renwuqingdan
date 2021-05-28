@@ -1,0 +1,43 @@
+<!--miniprogram/pages/todolist/todolist.wxml-->
+<view class='container'>
+  <view class='addTaskView'>
+    <view class="boader"></view>
+    <textarea class="newTastInputText" auto-height='true' placeholder="输入新任务" maxlength="100" bindinput="taskInput"
+      value="{{textAreaValue}}"></textarea>
+    <button class="addTaskButton" bindtap="addTaskTap">添加任务</button>
+    <view class="boader"></view>
+  </view>
+
+  <view class="border"></view>
+
+
+  <!--标星号的置顶-->
+
+  <scroll-view class='scrollViewClass'>
+    <checkbox-group bindchange="unfinishedCheckboxChange">
+      <label class="item" wx:for="{{unfinishedList}}" wx:key="key">
+        <view class='taskItemClass'>
+          <checkbox value="{{item._id}}" checked="{{item.finished}}"></checkbox>
+          <view class="taskText">{{item.taskContent}}</view>
+        </view>
+      </label>
+    </checkbox-group>
+    <view class="boader"></view>
+  </scroll-view>
+
+  <view class="yiwanchengClass">已完成</view>
+
+  <scroll-view class='scrollViewClass'>
+    <view class="boader"></view>
+    <checkbox-group bindchange="finishedCheckboxChange">
+      <label class="item" wx:for="{{finishedList}}" wx:key="key">
+        <view class='taskItemClass'>
+          <checkbox value="{{item._id}}" checked="{{item.finished}}"></checkbox>
+          <view class="finishedTaskText">{{item.taskContent}}</view>
+        </view>
+      </label>
+    </checkbox-group>
+    <view class="boader"></view>
+  </scroll-view>
+
+</view>
